@@ -42,7 +42,7 @@ _______________5.) IMPORT THE ASSETS/ SHAPE FILES INTO YOUR SCRIPT______________
 ![image](https://user-images.githubusercontent.com/75077556/127155343-fd5adca0-81e1-4cc6-888d-98e57e8afc1b.png)<br/>
 As shown in the image above, once your imports are in an organized fashion (import records), you will have to replace the highlighted imports with the assets you ingested in step 3 above; the 'Aberdarearea AOI_shapefiles'. Name the imports with the same names in the existing imports, i.e.<br/>
 -'AOI'<br/>
-
+-'Sample_data'<br/>
 ![image](https://user-images.githubusercontent.com/75077556/125587500-92fe80ac-13b9-4648-8571-54accc9e1041.png)<br/>
 Use the bucket icon on the left hand side of the import, as shown in the image above, to delete the existing import. The icon appears once you hover your cursor on the left side of the imports.<br/>
 ![image](https://user-images.githubusercontent.com/75077556/125588164-7a1a844b-f46d-4a6d-824e-03b0b59346c9.png)<br/>
