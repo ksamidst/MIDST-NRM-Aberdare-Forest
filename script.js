@@ -6575,11 +6575,9 @@ var DEM = ee.Image("CGIAR/SRTM90_V4"),
            [36.5160191433241, -0.05107241335099215],
            [36.51629809306165, -0.050879294378349725]]]]),
     ImageCollection_S2C = ee.ImageCollection("COPERNICUS/S2");
-	
-	////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 //__________________1)Image Set up section_____________________  //
 ///////////////////////////////////////////////////////////////////
-
 
 // Call the area of interest (AOI) from the Aberdares shapefile and center the map
 
@@ -6845,7 +6843,7 @@ print(points, 'points');
                        //2020 FOREST NON FOREST/////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-var forestMask2020 = classified2020.eq(1).and(2).and(3)
+var forestMask2020 = classified2020.eq(1).or(classified2020.eq(2)).or(classified2020.eq(3))
 
 print(forestMask2020,'Crop mask')
 
@@ -6853,13 +6851,13 @@ var forestLandArea = classified2020.mask(forestMask2020);
 
 print(forestLandArea, '2020_Forest_Land_Area')
 
-Map.addLayer(forestMask2020.clip(AOI),{},'2020 Forest Land Area');
+Map.addLayer(forestMask2020.clip(AOI),{min:0, max:1, palette:['FF7F50','006400']},'2020 Forest Land Area');
 
 
 
 Export.image.toDrive({
   image: forestMask2020.clip(AOI),
-  description: '2020_Forest_Land_Area',
+  description: 'aberdare_2020_Forest_Land_Area',
   region: AOI,
   scale: 10,
   maxPixels: 1e12,
@@ -6997,7 +6995,7 @@ print('2016 Areas_Hectares',  areas2016);
                        //2016 FOREST NON-FOREST/////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-var forestMask2016 = classified2016.eq(1).and(2).and(3)
+var forestMask2016 = classified2016.eq(1).or(classified2016.eq(2)).or(classified2016.eq(3));
 
 print(forestMask2016,'Crop mask')
 
@@ -7005,13 +7003,13 @@ var forestLandArea = classified2016.mask(forestMask2016);
 
 print(forestLandArea, '2016_Forest_Land_Area')
 
-Map.addLayer(forestMask2016.clip(AOI),{},'2016 Forest Land Area');
+Map.addLayer(forestMask2016.clip(AOI),{min:0, max:1, palette:['FF7F50','006400']},'2016 Forest Land Area');
 
 
 
 Export.image.toDrive({
   image: forestMask2016.clip(AOI),
-  description: '2016_Forest_Land_Area',
+  description: 'aberdare_2016_Forest_Land_Area',
   region: AOI,
   scale: 10,
   maxPixels: 1e12,
@@ -7034,7 +7032,7 @@ Map.addLayer(changes.clip(AOI), {min:-10, max:10, palette:["red", "grey", "Green
 //Define a GEE user interface panel on which to draw the legend
 var legend = ui.Panel({
   style: {
-    position: 'bottom-right',
+    position: 'bottom-left',
     padding: '6px 15px'
   }
 });
@@ -7086,6 +7084,64 @@ var names = ['Natural Forest', 'Plantation', 'Bamboo','Cropland','Open Grassland
 for (var i = 0; i < 6; i++) {
   legend.add(makeRow(palette[i], names[i]));
 }
+
+// add the legend to map (alternatively you can also print the legend to the console)
+Map.add(legend);
+
+//Define a GEE user interface panel on which to draw the legend.
+var legend = ui.Panel({
+  style: {
+    position: 'bottom-right',
+    padding: '6px 15px'
+  }
+});
+
+var legendTitle = ui.Label({
+  value: 'Legend 2',
+  style: {
+    fontWeight: 'bold',
+    fontSize: '18px',
+    margin: '0 0 4px 0',
+    padding: '0'
+    }
+});
+
+
+// Add the title to the legend
+legend.add(legendTitle);
+
+var palette =['006400','FF7F50'];
+
+// Add the names of the classes
+var names = ['Forest Areas','NonForest Areas'];
+
+var makeRow = function(color, name){
+      // Create the label that is actually the colored box.
+      var colorBox = ui.Label({
+        style: {
+          backgroundColor:color,
+          // Use padding to give the box height and width.
+          padding: '8px',
+          margin: '0 0 4px 0'
+        }
+      });
+      // Create the label filled with the description text.
+      var description = ui.Label({
+        value: name,
+        style: {margin: '0 0 4px 6px'}
+      });
+      // return the panel
+      return ui.Panel({
+        widgets: [colorBox, description],
+        layout: ui.Panel.Layout.Flow('horizontal')
+      });
+};
+ 
+// Add color and names
+for (var i = 0; i < 2; i++) {
+  legend.add(makeRow(palette[i], names[i]));
+}
+
 // add legend to map (alternatively you can also print the legend to the console)
 Map.add(legend);
 
