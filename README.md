@@ -1,6 +1,6 @@
 _____________INTRODUCTION_____________<br/>
 
-This work on the Kibiku forest was done as part of the MIDST NRM project piloted by the Kenya Space Agency, using satellite imagery on the Google Earth Engine platform to 
+This work on the Aberdare forest was done as part of the MIDST NRM project piloted by the Kenya Space Agency, using satellite imagery on the Google Earth Engine platform to 
 analyze raw satellite imagery into high level land cover classification products. This guide will enable new as well as intermediate and advanced users of the Google Earth Engine 
 platform to run the scripts in this repository and view the products.<br/>
 The scripts contain comments that highlight a step by step of the process followed in analysing and generating products for the aberdare forest.
@@ -39,8 +39,8 @@ From within the project folder, open the 'script.js' file using a text editor of
 ![image](https://user-images.githubusercontent.com/75077556/125584368-d970818f-b5f8-49d7-a84e-c02744911aeb.png)<br/>
 
 _______________5.) IMPORT THE ASSETS/ SHAPE FILES INTO YOUR SCRIPT___________________<br/>
-![image](https://user-images.githubusercontent.com/75077556/125596583-ffe2719c-a354-4737-aec4-e630dea8d829.png)<br/>
-As shown in the image above, once your imports are in an organized fashion (import records), you will have to replace the highlighted imports with the assets you ingested in step 3 above; the 'kibikuarea AOI_shapefiles'. Name the imports with the same names in the existing imports, i.e.<br/>
+![image](https://user-images.githubusercontent.com/75077556/127155343-fd5adca0-81e1-4cc6-888d-98e57e8afc1b.png)<br/>
+As shown in the image above, once your imports are in an organized fashion (import records), you will have to replace the highlighted imports with the assets you ingested in step 3 above; the 'Aberdarearea AOI_shapefiles'. Name the imports with the same names in the existing imports, i.e.<br/>
 -'AOI'<br/>
 
 ![image](https://user-images.githubusercontent.com/75077556/125587500-92fe80ac-13b9-4648-8571-54accc9e1041.png)<br/>
